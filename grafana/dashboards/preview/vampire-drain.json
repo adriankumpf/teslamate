@@ -15,8 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 24,
-  "iteration": 1623015707418,
+  "id": 27,
+  "iteration": 1623146357448,
   "links": [
     {
       "icon": "dashboard",
@@ -67,10 +67,11 @@
             "mode": "thresholds"
           },
           "custom": {
-            "align": "right",
+            "align": null,
             "filterable": false,
-            "width": 100
+            "width": 90
           },
+          "decimals": 0,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -107,7 +108,7 @@
                   {
                     "targetBlank": false,
                     "title": "",
-                    "url": "d/zm7wN6Zgz?from=${__cell_0}&to=${__cell_1}"
+                    "url": "d/zm7wN6Zgz?from=${__data.fields[start_date_ts]}&to=${__data.fields[end_date_ts]}"
                   }
                 ]
               },
@@ -117,7 +118,7 @@
               },
               {
                 "id": "custom.width",
-                "value": 180
+                "value": 200
               }
             ]
           },
@@ -141,7 +142,7 @@
               },
               {
                 "id": "custom.width",
-                "value": 180
+                "value": 200
               }
             ]
           },
@@ -434,11 +435,39 @@
               },
               {
                 "id": "displayName",
-                "value": "Cold"
+                "value": "red. Range"
               },
               {
                 "id": "custom.width",
-                "value": 80
+                "value": 110
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*_ts/"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "custom.width",
+                "value": 128
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "start_date_ts"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 200
               }
             ]
           }
@@ -495,30 +524,26 @@
       "title": "Vampire Drain",
       "transformations": [
         {
-          "id": "merge",
+          "id": "organize",
           "options": {
-            "reducers": []
-          }
-        },
-        {
-          "id": "filterFieldsByName",
-          "options": {
-            "include": {
-              "names": [
-                "start_date",
-                "end_date",
-                "duration",
-                "standby",
-                "soc_diff",
-                "has_reduced_range",
-                "consumption",
-                "avg_power",
-                "range_diff_mi",
-                "range_diff_km",
-                "range_lost_per_hour_mi",
-                "range_lost_per_hour_km"
-              ]
-            }
+            "excludeByName": {},
+            "indexByName": {
+              "avg_power": 9,
+              "consumption": 8,
+              "duration": 2,
+              "end_date": 1,
+              "end_date_ts": 13,
+              "has_reduced_range": 5,
+              "range_diff_mi": 6,
+              "range_diff_km": 7,
+              "range_lost_per_hour_mi": 10,
+              "range_lost_per_hour_km": 11,
+              "soc_diff": 4,
+              "standby": 3,
+              "start_date": 0,
+              "start_date_ts": 12
+            },
+            "renameByName": {}
           }
         }
       ],
@@ -527,7 +552,9 @@
   ],
   "schemaVersion": 27,
   "style": "dark",
-  "tags": ["tesla"],
+  "tags": [
+    "tesla"
+  ],
   "templating": {
     "list": [
       {
@@ -561,7 +588,7 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
+          "selected": true,
           "text": "6",
           "value": "6"
         },
@@ -610,6 +637,7 @@
           }
         ],
         "query": "0,1,3,6,12,18,24",
+        "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
       },
@@ -617,8 +645,8 @@
         "allValue": null,
         "current": {
           "selected": false,
-          "text": "km",
-          "value": "km"
+          "text": "mi",
+          "value": "mi"
         },
         "datasource": "TeslaMate",
         "definition": "select unit_of_length from settings limit 1;",
@@ -729,7 +757,7 @@
     ]
   },
   "timezone": "",
-  "title": "Vampire Drain",
-  "uid": "zhHx2Fggk",
-  "version": 3
+  "title": "Vampire Drain (Preview)",
+  "uid": "1hHx2Fggk",
+  "version": 1
 }
